@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
-import { OktaAuthModule } from '@okta/okta-angular';
+import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -33,6 +33,15 @@ import { AuthorsListComponent } from './Moderator/authors-list/authors-list.comp
 import { ViewersListComponent } from './Moderator/viewers-list/viewers-list.component';
 import { AuthorService } from './Services/author.service';
 import { OktaApiService } from './Services/okta-api.service';
+import odic from './app.config';
+
+const config = {
+  issuer: odic["issuer"],
+  clientId: odic["clientId"],
+  redirectUri: odic["redirectUri"],
+  scope: odic["scopes"],
+  pkce: odic["pkce"]
+}
 
 @NgModule({
   declarations: [
@@ -67,10 +76,11 @@ import { OktaApiService } from './Services/okta-api.service';
     OktaAuthModule.initAuth({
       issuer: 'https://dev-194696.okta.com/oauth2/default',
       redirectUri: 'https://instablogs.azurewebsites.net/implicit/callback',
-      clientId: '0oa21xmyc30adPRbZ357'
+      clientId: '0oa21xmyc30adPRbZ357',
+      pkce: true
     })
   ],
-  providers: [BlogPostService, AuthorService, OktaApiService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [BlogPostService, AuthorService, OktaApiService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, {provide: OKTA_CONFIG, useValue: config}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

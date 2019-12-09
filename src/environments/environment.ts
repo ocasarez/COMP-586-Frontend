@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appUrl: 'https://instablogs20191208111010.azurewebsites.net'
+  appUrl: 'https://instablogs20191208111010.azurewebsites.net/'
 };
 
 /*

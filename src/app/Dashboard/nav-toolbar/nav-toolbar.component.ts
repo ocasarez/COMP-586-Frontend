@@ -32,7 +32,7 @@ export class NavToolbarComponent {
   }
 
   login() {
-    this.oktaAuth.loginRedirect();
+    this.oktaAuth.loginRedirect('/dashboard');
   }
   logout() {
     this.oktaAuth.logout('/');

@@ -35,14 +35,6 @@ import { AuthorService } from './Services/author.service';
 import { OktaApiService } from './Services/okta-api.service';
 import odic from './app.config';
 
-const config = {
-  issuer: odic["issuer"],
-  clientId: odic["clientId"],
-  redirectUri: odic["redirectUri"],
-  scope: odic["scopes"],
-  pkce: odic["pkce"]
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +72,7 @@ const config = {
       pkce: true
     })
   ],
-  providers: [BlogPostService, AuthorService, OktaApiService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, {provide: OKTA_CONFIG, useValue: config}],
+  providers: [BlogPostService, AuthorService, OktaApiService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -66,7 +66,7 @@ import { OktaApiService } from './Services/okta-api.service';
     ReactiveFormsModule,
     OktaAuthModule.initAuth({
       issuer: 'https://dev-194696.okta.com/oauth2/default',
-      redirectUri: 'http://localhost:4200/implicit/callback',
+      redirectUri: 'https://instablogs.azurewebsites.net/implicit/callback',
       clientId: '0oa21xmyc30adPRbZ357'
     })
   ],
